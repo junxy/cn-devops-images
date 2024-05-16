@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.19
-ARG ESSENTIAL_PACKAGES="openssh rsync tree"
+ARG ESSENTIAL_PACKAGES=openssh rsync tree
 
 FROM alpine:${ALPINE_VERSION}
 
