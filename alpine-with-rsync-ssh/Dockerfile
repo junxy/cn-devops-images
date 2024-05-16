@@ -6,7 +6,7 @@ FROM alpine:${ALPINE_VERSION}
 ENV TZ=Asia/Shanghai
 # ENV LANG=en_US.UTF-8
 
-RUN apk add --no-cache ${ESSENTIAL_PACKAGES} \
+RUN echo ${ESSENTIAL_PACKAGES} && apk update && apk add --no-cache ${ESSENTIAL_PACKAGES} \
     && rm -rf /var/cache/apk/*
     # && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     # && apk add --no-cache tzdata \
