@@ -146,6 +146,7 @@ jobs:
             ALPINE_VERSION=3.18
             PNPM_VERSION=latest-9
             ESSENTIAL_PACKAGES="openssh rsync tree"
+            BUILD_DATA=${{ steps.date.outputs.date }}
 
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-node-lts-pnpm9-rsync-ssh
@@ -162,6 +163,7 @@ jobs:
             ALPINE_VERSION=3.19
             PNPM_VERSION=latest-9
             ESSENTIAL_PACKAGES="openssh rsync tree"
+            BUILD_DATA=${{ steps.date.outputs.date }}
           tags: |
             ghcr.io/junxy/alpine:node-lts-pnpm9-rsync-ssh
             ghcr.io/junxy/alpine:alpine3.19-node-lts-pnpm9-rsync-ssh

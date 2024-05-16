@@ -2,6 +2,7 @@ ARG ALPINE_VERSION=3.19
 ARG NODE_VERSION=lts
 ARG PNPM_VERSION=latest-9
 ARG ESSENTIAL_PACKAGES="openssh rsync tree"
+ARG BUILD_DATA
 
 FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION}
 
@@ -18,3 +19,5 @@ RUN apk add --no-cache ${ESSENTIAL_PACKAGES} \
 # 安装 pnpm
 # ref: https://pnpm.io/continuous-integration#gitlab-ci
 RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+
+RUN echo ${BUILD_DATA} > /BUILD_DATA
