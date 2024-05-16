@@ -67,6 +67,7 @@ jobs:
             junxy/alpine:rsync-ssh-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-rsync-ssh-${{ steps.date.outputs.date }}
 
+
       - name: Build and push based alpine-3.18 with node lts and rsync ssh
         uses: docker/build-push-action@v5.1.0
         with:
@@ -79,7 +80,6 @@ jobs:
             ghcr.io/junxy/alpine:alpine3.18-node-lts-rsync-ssh
             junxy/alpine:alpine3.18-node-lts-rsync-ssh
             junxy/alpine:alpine3.18-node-lts-rsync-ssh-${{ steps.date.outputs.date }}
-          #junxy/alpine:${{ github.sha }}
 
       - name: Build and push based alpine-3.19 with node lts and rsync ssh
         uses: docker/build-push-action@v5.1.0
@@ -96,3 +96,33 @@ jobs:
             junxy/alpine:alpine3.19-node-lts-rsync-ssh
             junxy/alpine:node-lts-rsync-ssh-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-node-lts-rsync-ssh-${{ steps.date.outputs.date }}
+
+
+      - name: Build and push based alpine-3.18 with node lts and pnpm
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-pnpm/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.18
+          tags: |
+            ghcr.io/junxy/alpine:alpine3.18-node-lts-pnpm
+            junxy/alpine:alpine3.18-node-lts-pnpm
+            junxy/alpine:alpine3.18-node-lts-pnpm-${{ steps.date.outputs.date }}
+
+      - name: Build and push based alpine-3.19 with node lts and pnpm
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-pnpm/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.19
+          tags: |
+            ghcr.io/junxy/alpine:node-lts-pnpm
+            ghcr.io/junxy/alpine:alpine3.19-node-lts-pnpm
+            junxy/alpine:node-lts-pnpm
+            junxy/alpine:alpine3.19-node-lts-pnpm
+            junxy/alpine:node-lts-pnpm-${{ steps.date.outputs.date }}
+            junxy/alpine:alpine3.19-node-lts-pnpm-${{ steps.date.outputs.date }}
