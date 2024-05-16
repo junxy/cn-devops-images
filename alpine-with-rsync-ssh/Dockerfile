@@ -1,7 +1,8 @@
 ARG ALPINE_VERSION=3.19
-ARG ESSENTIAL_PACKAGES=openssh rsync tree
-
 FROM alpine:${ALPINE_VERSION}
+
+# issue: https://stackoverflow.com/a/56748289/2117999
+ARG ESSENTIAL_PACKAGES=openssh rsync tree
 
 ENV TZ=Asia/Shanghai
 # ENV LANG=en_US.UTF-8
