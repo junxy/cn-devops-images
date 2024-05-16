@@ -58,5 +58,5 @@ jobs:
             ghcr.io/junxy/alpine:alpine3.19-rsync-ssh
             junxy/alpine:rsync-ssh
             junxy/alpine:alpine3.19-rsync-ssh
-            junxy/alpine:${{ steps.date.outputs.date }}
+            junxy/alpine:rsync-ssh-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-rsync-ssh-${{ steps.date.outputs.date }}
