@@ -17,22 +17,27 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
       - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v3.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Log in to DockerHub Registry
         uses: docker/login-action@v3.0.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
-      - name: Build and push based alpine-3.18
+
+      - name: Build and push based alpine-3.18 with rsync ssh
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./alpine-with-rsync-ssh/
@@ -45,7 +50,8 @@ jobs:
             junxy/alpine:alpine3.18-rsync-ssh
             junxy/alpine:alpine3.18-rsync-ssh-${{ steps.date.outputs.date }}
           #junxy/alpine:${{ github.sha }}
-      - name: Build and push based alpine-3.19
+
+      - name: Build and push based alpine-3.19 with rsync ssh
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./alpine-with-rsync-ssh/
@@ -60,3 +66,33 @@ jobs:
             junxy/alpine:alpine3.19-rsync-ssh
             junxy/alpine:rsync-ssh-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-rsync-ssh-${{ steps.date.outputs.date }}
+
+      - name: Build and push based alpine-3.18 with node lts and rsync ssh
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-rsync-ssh/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.18
+          tags: |
+            ghcr.io/junxy/alpine:alpine3.18-node-lts-rsync-ssh
+            junxy/alpine:alpine3.18-node-lts-rsync-ssh
+            junxy/alpine:alpine3.18-node-lts-rsync-ssh-${{ steps.date.outputs.date }}
+          #junxy/alpine:${{ github.sha }}
+
+      - name: Build and push based alpine-3.19 with node lts and rsync ssh
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-rsync-ssh/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.19
+          tags: |
+            ghcr.io/junxy/alpine:node-lts-rsync-ssh
+            ghcr.io/junxy/alpine:alpine3.19-node-lts-rsync-ssh
+            junxy/alpine:node-lts-rsync-ssh
+            junxy/alpine:alpine3.19-node-lts-rsync-ssh
+            junxy/alpine:node-lts-rsync-ssh-${{ steps.date.outputs.date }}
+            junxy/alpine:alpine3.19-node-lts-rsync-ssh-${{ steps.date.outputs.date }}
