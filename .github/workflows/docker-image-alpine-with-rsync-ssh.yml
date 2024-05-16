@@ -45,6 +45,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
+            ESSENTIAL_PACKAGES="openssh rsync tree"
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-rsync-ssh
             junxy/alpine:alpine3.18-rsync-ssh
@@ -59,6 +60,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
+            ESSENTIAL_PACKAGES="openssh rsync tree"
           tags: |
             ghcr.io/junxy/alpine:rsync-ssh
             ghcr.io/junxy/alpine:alpine3.19-rsync-ssh
@@ -76,6 +78,8 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
+            NODE_VERSION=lts
+            ESSENTIAL_PACKAGES="openssh rsync tree"
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-node-lts-rsync-ssh
             junxy/alpine:alpine3.18-node-lts-rsync-ssh
@@ -89,6 +93,8 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
+            NODE_VERSION=lts
+            ESSENTIAL_PACKAGES="openssh rsync tree"
           tags: |
             ghcr.io/junxy/alpine:node-lts-rsync-ssh
             ghcr.io/junxy/alpine:alpine3.19-node-lts-rsync-ssh
@@ -98,7 +104,7 @@ jobs:
             junxy/alpine:alpine3.19-node-lts-rsync-ssh-${{ steps.date.outputs.date }}
 
 
-      - name: Build and push based alpine-3.18 with node lts and pnpm
+      - name: Build and push based alpine-3.18 with node lts and pnpm9
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./alpine-node-with-pnpm/
@@ -106,12 +112,13 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
+            PNPM_VERSION=latest-9
           tags: |
-            ghcr.io/junxy/alpine:alpine3.18-node-lts-pnpm
-            junxy/alpine:alpine3.18-node-lts-pnpm
-            junxy/alpine:alpine3.18-node-lts-pnpm-${{ steps.date.outputs.date }}
+            ghcr.io/junxy/alpine:alpine3.18-node-lts-pnpm9
+            junxy/alpine:alpine3.18-node-lts-pnpm9
+            junxy/alpine:alpine3.18-node-lts-pnpm9-${{ steps.date.outputs.date }}
 
-      - name: Build and push based alpine-3.19 with node lts and pnpm
+      - name: Build and push based alpine-3.19 with node lts and pnpm9
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./alpine-node-with-pnpm/
@@ -119,10 +126,43 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
+            PNPM_VERSION=latest-9
           tags: |
-            ghcr.io/junxy/alpine:node-lts-pnpm
-            ghcr.io/junxy/alpine:alpine3.19-node-lts-pnpm
-            junxy/alpine:node-lts-pnpm
-            junxy/alpine:alpine3.19-node-lts-pnpm
-            junxy/alpine:node-lts-pnpm-${{ steps.date.outputs.date }}
-            junxy/alpine:alpine3.19-node-lts-pnpm-${{ steps.date.outputs.date }}
+            ghcr.io/junxy/alpine:node-lts-pnpm9
+            ghcr.io/junxy/alpine:alpine3.19-node-lts-pnpm9
+            junxy/alpine:node-lts-pnpm9
+            junxy/alpine:alpine3.19-node-lts-pnpm9
+            junxy/alpine:node-lts-pnpm9-${{ steps.date.outputs.date }}
+            junxy/alpine:alpine3.19-node-lts-pnpm9-${{ steps.date.outputs.date }}
+
+
+      - name: Build and push based alpine-3.18 with node lts and pnpm9 rsync ssh
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-pnpm-rsync-ssh/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.18
+            PNPM_VERSION=latest-9
+          tags: |
+            ghcr.io/junxy/alpine:alpine3.18-node-lts-pnpm9-rsync-ssh
+            junxy/alpine:alpine3.18-node-lts-pnpm9-rsync-ssh
+            junxy/alpine:alpine3.18-node-lts-pnpm9-rsync-ssh-${{ steps.date.outputs.date }}
+
+      - name: Build and push based alpine-3.19 with node lts and pnpm9 rsync ssh
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine-node-with-pnpm-rsync-ssh/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.19
+            PNPM_VERSION=latest-9
+          tags: |
+            ghcr.io/junxy/alpine:node-lts-pnpm9-rsync-ssh
+            ghcr.io/junxy/alpine:alpine3.19-node-lts-pnpm9-rsync-ssh
+            junxy/alpine:node-lts-pnpm9-rsync-ssh
+            junxy/alpine:alpine3.19-node-lts-pnpm9-rsync-ssh
+            junxy/alpine:node-lts-pnpm9-rsync-ssh-${{ steps.date.outputs.date }}
+            junxy/alpine:alpine3.19-node-lts-pnpm9-rsync-ssh-${{ steps.date.outputs.date }}
