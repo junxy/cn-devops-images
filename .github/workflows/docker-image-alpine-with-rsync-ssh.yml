@@ -162,7 +162,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=3.19
             PNPM_VERSION=latest-9
-            ESSENTIAL_PACKAGES=openssh tree rsync
+            ESSENTIAL_PACKAGES=openssh tree rsync curl
             BUILD_DATA="${{ steps.date.outputs.date }}"
           tags: |
             ghcr.io/junxy/alpine:node-lts-pnpm9-rsync-ssh
