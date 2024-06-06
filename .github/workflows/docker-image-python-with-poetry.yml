@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    paths:
+      - 'python-*'
   schedule:
     # Runs "every Monday" (see https://crontab.guru)
     - cron: '0 0 * * MON'
@@ -37,10 +39,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
 
-      - name: Build and push based python-3.12 with poetry
+      - name: Build and push based python-3.12 with poetry 1.8.3
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./bookworm-python-with-poetry/
+          context: ./python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
@@ -48,6 +50,21 @@ jobs:
             POETRY_VERSION=1.8.3
           tags: |
             ghcr.io/junxy/python:poetry
+            ghcr.io/junxy/python:poetry-1.8.3
             junxy/python:3.12-poetry-1.8.3
             junxy/alpine:3.12-poetry-1.8.3-${{ steps.date.outputs.date }}
           #junxy/alpine:${{ github.sha }}
+
+      - name: Build and push based python-3.12 with poetry 1.8.2
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./python-bookworm-with-poetry/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            PYTHON_VERSION=3.12
+            POETRY_VERSION=1.8.2
+          tags: |
+            ghcr.io/junxy/python:poetry-1.8.2
+            junxy/python:3.12-poetry-1.8.2
+            junxy/alpine:3.12-poetry-1.8.2-${{ steps.date.outputs.date }}
