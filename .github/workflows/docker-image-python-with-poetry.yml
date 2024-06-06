@@ -37,7 +37,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
 
-      - name: Build and push based alpine-3.18 with rsync ssh
+      - name: Build and push based python-3.12 with poetry
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./bookworm-python-with-poetry/
