@@ -1,4 +1,4 @@
-name: Docker Image alpine with rsync ssh
+name: Docker Image Python With Poetry
 
 on:
   workflow_dispatch:

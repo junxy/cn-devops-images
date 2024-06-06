@@ -1,4 +1,4 @@
-name: Docker Image alpine with rsync ssh
+name: Docker Image Alpine With Rsync And Ssh
 
 on:
   workflow_dispatch:
