@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'python-*'
+      - 'python/**'
   schedule:
     # Runs "every Monday" (see https://crontab.guru)
     - cron: '0 0 * * MON'
@@ -42,7 +42,7 @@ jobs:
       - name: Build and push based python-3.12 with poetry 1.8.3
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./python-bookworm-with-poetry/
+          context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
@@ -58,7 +58,7 @@ jobs:
       - name: Build and push based python-3.12 with poetry 1.8.2
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./python-bookworm-with-poetry/
+          context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
