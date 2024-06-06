@@ -49,10 +49,10 @@ jobs:
             PYTHON_VERSION=3.12
             POETRY_VERSION=1.8.3
           tags: |
-            ghcr.io/junxy/python:poetry
-            ghcr.io/junxy/python:poetry-1.8.3
-            junxy/python:3.12-poetry-1.8.3
-            junxy/alpine:3.12-poetry-1.8.3-${{ steps.date.outputs.date }}
+            ghcr.io/junxy/python:poetry-cn
+            ghcr.io/junxy/python:poetry-1.8.3-cn
+            junxy/python:3.12-poetry-1.8.3-cn
+            junxy/alpine:3.12-poetry-1.8.3-cn-${{ steps.date.outputs.date }}
           #junxy/alpine:${{ github.sha }}
 
       - name: Build and push based python-3.12 with poetry 1.8.2
@@ -65,6 +65,6 @@ jobs:
             PYTHON_VERSION=3.12
             POETRY_VERSION=1.8.2
           tags: |
-            ghcr.io/junxy/python:poetry-1.8.2
-            junxy/python:3.12-poetry-1.8.2
-            junxy/alpine:3.12-poetry-1.8.2-${{ steps.date.outputs.date }}
+            ghcr.io/junxy/python:poetry-1.8.2-cn
+            junxy/python:3.12-poetry-1.8.2-cn
+            junxy/alpine:3.12-poetry-1.8.2-cn-${{ steps.date.outputs.date }}
