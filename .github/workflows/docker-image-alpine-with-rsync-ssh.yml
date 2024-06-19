@@ -47,7 +47,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
-            ESSENTIAL_PACKAGES=openssh rsync tree
+            ESSENTIAL_PACKAGES=openssh rsync tree curl bash
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-rsync-ssh
             junxy/alpine:alpine3.18-rsync-ssh
@@ -62,7 +62,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
-            ESSENTIAL_PACKAGES=openssh rsync tree
+            ESSENTIAL_PACKAGES=openssh rsync tree curl bash
           tags: |
             ghcr.io/junxy/alpine:rsync-ssh
             ghcr.io/junxy/alpine:alpine3.19-rsync-ssh
@@ -81,7 +81,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=3.18
             NODE_VERSION=lts
-            ESSENTIAL_PACKAGES=openssh rsync tree
+            ESSENTIAL_PACKAGES=openssh rsync tree curl bash
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-node-lts-rsync-ssh
             junxy/alpine:alpine3.18-node-lts-rsync-ssh
@@ -96,7 +96,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=3.19
             NODE_VERSION=lts
-            ESSENTIAL_PACKAGES=openssh rsync tree
+            ESSENTIAL_PACKAGES=openssh rsync tree curl bash
           tags: |
             ghcr.io/junxy/alpine:node-lts-rsync-ssh
             ghcr.io/junxy/alpine:alpine3.19-node-lts-rsync-ssh
@@ -147,7 +147,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=3.18
             PNPM_VERSION=latest-9
-            ESSENTIAL_PACKAGES=openssh tree rsync
+            ESSENTIAL_PACKAGES=openssh tree rsync curl bash
             BUILD_DATA="${{ steps.date.outputs.date }}"
 
           tags: |
@@ -164,7 +164,7 @@ jobs:
           build-args: |
             ALPINE_VERSION=3.19
             PNPM_VERSION=latest-9
-            ESSENTIAL_PACKAGES=openssh tree rsync curl
+            ESSENTIAL_PACKAGES=openssh tree rsync curl bash
             BUILD_DATA="${{ steps.date.outputs.date }}"
           tags: |
             ghcr.io/junxy/alpine:node-lts-pnpm9-rsync-ssh
