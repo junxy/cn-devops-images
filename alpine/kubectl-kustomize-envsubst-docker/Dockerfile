@@ -22,5 +22,5 @@ RUN env && apk add --no-cache ${ESSENTIAL_PACKAGES} \
 
 # install envsubst
 RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION}/envsubst-`uname -s`-`uname -m` -o /usr/local/bin/envsubst \
-    chmod +x /usr/local/bin/envsubst
+    && chmod +x /usr/local/bin/envsubst
 
