@@ -35,7 +35,7 @@ RUN cd /usr/local/bin/ && curl -s "https://raw.githubusercontent.com/kubernetes-
 #  docker run --rm -it --entrypoint sh ghcr.nju.edu.cn/junxy/alpine:kubectl-kustomize-envsubst
 #  which kubectl | xargs cat
 # RUN curl -L "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
-RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/linux/amd64/kubectl -o /usr/local/bin/kubectl \
+RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
 # mark
