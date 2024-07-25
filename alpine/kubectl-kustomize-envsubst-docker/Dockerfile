@@ -6,6 +6,7 @@ ARG ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash
 # https://github.com/a8m/envsubst
 # ttps://github.com/a8m/envsubst/releases
 ARG ENVSUBST_VERSION=v1.4.2
+ARG KUBECTL_VERSION=v1.30.3
 
 # Install required system packages and dependencies
 # RUN install_packages ca-certificates curl gettext git jq procps
@@ -30,7 +31,9 @@ RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION
 RUN cd /usr/local/bin/ && curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 # install kubectl
-RUN curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
+# https://dl.k8s.io/v1.30.3/bin/linux/amd64/kubectl
+# RUN curl -L "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
+RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
 USER 1001

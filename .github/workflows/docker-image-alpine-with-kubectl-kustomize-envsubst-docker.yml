@@ -72,4 +72,3 @@ jobs:
             junxy/alpine:kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
 
-
