@@ -1,4 +1,4 @@
-name: Docker Image Alpine With Rsync And Ssh
+name: Docker Image Alpine With kubectl-kustomize-envsubst
 
 on:
   workflow_dispatch:
