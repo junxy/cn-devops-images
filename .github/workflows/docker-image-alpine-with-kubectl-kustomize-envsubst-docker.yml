@@ -1,0 +1,75 @@
+name: Docker Image Alpine With Rsync And Ssh
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      # - 'alpine/**'
+      - 'alpine/kubectl-kustomize-envsubst-docker/**'
+  # schedule:
+    # Runs "every Monday" (see https://crontab.guru)
+    # - cron: '0 0 * * MON'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      # ref: https://stackoverflow.com/a/60942437/2117999
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v3.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to DockerHub Registry
+        uses: docker/login-action@v3.0.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3.0.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.0.0
+
+      - name: Build and push based alpine-3.18 with kubectl-kustomize-envsubst
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine/kubectl-kustomize-envsubst-docker/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.18
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl
+          tags: |
+            ghcr.io/junxy/alpine:alpine3.18-kubectl-kustomize-envsubst
+            junxy/alpine:alpine3.18-kubectl-kustomize-envsubst
+            junxy/alpine:alpine3.18-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
+          # junxy/alpine:${{ github.sha }}
+
+      - name: Build and push based alpine-3.19 with kubectl-kustomize-envsubst
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: ./alpine/kubectl-kustomize-envsubst-docker/
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            ALPINE_VERSION=3.19
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl
+          tags: |
+            ghcr.io/junxy/alpine:kubectl-kustomize-envsubst
+            ghcr.io/junxy/alpine:alpine3.19-kubectl-kustomize-envsubst
+            junxy/alpine:kubectl-kustomize-envsubst
+            junxy/alpine:alpine3.19-kubectl-kustomize-envsubst
+            junxy/alpine:kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
+            junxy/alpine:alpine3.19-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
+
+
