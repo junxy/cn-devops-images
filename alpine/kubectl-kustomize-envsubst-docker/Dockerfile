@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.19
 FROM alpine:${ALPINE_VERSION}
 
 # issue: https://stackoverflow.com/a/56748289/2117999
-ARG ESSENTIAL_PACKAGES=jq tree ca-certificates curl
+ARG ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash
 # https://github.com/a8m/envsubst
 # ttps://github.com/a8m/envsubst/releases
 ARG ENVSUBST_VERSION=v1.4.2
