@@ -32,9 +32,14 @@ RUN cd /usr/local/bin/ && curl -s "https://raw.githubusercontent.com/kubernetes-
 
 # install kubectl
 # https://dl.k8s.io/v1.30.3/bin/linux/amd64/kubectl
+#  docker run --rm -it --entrypoint sh ghcr.nju.edu.cn/junxy/alpine:kubectl-kustomize-envsubst
+#  which kubectl | xargs cat
 # RUN curl -L "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
 RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
+
+# mark
+RUN touch $(date '+%Y%m%d%H%M%S')
 
 USER 1001
 ENTRYPOINT [ "kubectl" ]
