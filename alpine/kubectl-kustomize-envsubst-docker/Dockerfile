@@ -3,7 +3,8 @@ FROM alpine:${ALPINE_VERSION}
 
 # issue: https://stackoverflow.com/a/56748289/2117999
 ARG ESSENTIAL_PACKAGES=jq tree ca-certificates curl
-ARG ENVSUBST_VERSION=v1.2.0
+# https://github.com/a8m/envsubst
+ARG ENVSUBST_VERSION=v1.4.2
 
 # Install required system packages and dependencies
 # RUN install_packages ca-certificates curl gettext git jq procps
@@ -22,3 +23,4 @@ RUN env && apk add --no-cache ${ESSENTIAL_PACKAGES} \
 # install envsubst
 RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION}/envsubst-`uname -s`-`uname -m` -o /usr/local/bin/envsubst \
     chmod +x /usr/local/bin/envsubst
+
