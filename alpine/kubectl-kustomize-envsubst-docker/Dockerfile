@@ -4,6 +4,7 @@ FROM alpine:${ALPINE_VERSION}
 # issue: https://stackoverflow.com/a/56748289/2117999
 ARG ESSENTIAL_PACKAGES=jq tree ca-certificates curl
 # https://github.com/a8m/envsubst
+# ttps://github.com/a8m/envsubst/releases
 ARG ENVSUBST_VERSION=v1.4.2
 
 # Install required system packages and dependencies
@@ -24,3 +25,14 @@ RUN env && apk add --no-cache ${ESSENTIAL_PACKAGES} \
 RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION}/envsubst-`uname -s`-`uname -m` -o /usr/local/bin/envsubst \
     && chmod +x /usr/local/bin/envsubst
 
+# install kustomize
+# https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz
+RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+# install kubectl
+RUN curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/`uname -s`/amd64/kubectl" -o /usr/local/bin/kubectl \
+    && chmod +x /usr/local/bin/kubectl
+
+USER 1001
+ENTRYPOINT [ "kubectl" ]
+CMD [ "--help" ]
