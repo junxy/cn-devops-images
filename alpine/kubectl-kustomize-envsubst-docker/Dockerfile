@@ -41,6 +41,8 @@ RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr
 # mark
 RUN touch $(date '+%Y%m%d%H%M%S')
 
-USER 1001
+# USER 1001
+# 避免权限需要sudo但又抱错 -> sudo: you do not exist in the passwd database
+
 ENTRYPOINT [ "kubectl" ]
 CMD [ "--help" ]
