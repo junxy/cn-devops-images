@@ -48,9 +48,10 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
-            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-kubectl-kustomize-envsubst
+            ghcr.io/junxy/alpine:alpine3.18-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.18-kubectl-kustomize-envsubst
             junxy/alpine:alpine3.18-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
           # junxy/alpine:${{ github.sha }}
@@ -63,12 +64,13 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
-            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext
           tags: |
             ghcr.io/junxy/alpine:kubectl-kustomize-envsubst
             ghcr.io/junxy/alpine:alpine3.19-kubectl-kustomize-envsubst
+            ghcr.io/junxy/alpine:kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
+            ghcr.io/junxy/alpine:alpine3.19-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
             junxy/alpine:kubectl-kustomize-envsubst
             junxy/alpine:alpine3.19-kubectl-kustomize-envsubst
             junxy/alpine:kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
             junxy/alpine:alpine3.19-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
-

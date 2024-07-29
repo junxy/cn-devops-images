@@ -23,8 +23,8 @@ RUN env && apk add --no-cache ${ESSENTIAL_PACKAGES} \
     # && locale-gen
 
 # install envsubst
-RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION}/envsubst-`uname -s`-`uname -m` -o /usr/local/bin/envsubst \
-    && chmod +x /usr/local/bin/envsubst
+##RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION}/envsubst-`uname -s`-`uname -m` -o /usr/local/bin/envsubst \
+##    && chmod +x /usr/local/bin/envsubst
 
 # install kustomize
 # https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz
