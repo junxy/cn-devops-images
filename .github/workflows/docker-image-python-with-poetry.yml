@@ -86,7 +86,6 @@ jobs:
             POETRY_VERSION=1.8.3
             POETRY_PLUGIN_PYPI_MIRROR_VERSION=0.4.3
           tags: |
-            ghcr.io/junxy/python:poetry-cn
             ghcr.io/junxy/python:poetry-1.8.3-cn
             junxy/python:3.12-poetry-1.8.3-cn
             junxy/alpine:3.12-poetry-1.8.3-cn-${{ steps.date.outputs.date }}
