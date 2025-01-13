@@ -22,26 +22,26 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m%d')"
 
       - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v3.0.0
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to DockerHub Registry
-        uses: docker/login-action@v3.0.0
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3.0.0
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.0.0
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and push based python-3.12 with poetry 2.0
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v6
         with:
           context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
@@ -58,7 +58,7 @@ jobs:
             junxy/alpine:3.12-poetry-2.0.1-cn-${{ steps.date.outputs.date }}
         
       - name: Build and push based python-3.12 with poetry 1.8
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v6
         with:
           context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
@@ -76,7 +76,7 @@ jobs:
             junxy/alpine:3.12-poetry-1.8.5-cn-${{ steps.date.outputs.date }}
 
       - name: Build and push based python-3.12 with poetry 1.8.3
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v6
         with:
           context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
@@ -92,7 +92,7 @@ jobs:
           #junxy/alpine:${{ github.sha }}
 
       - name: Build and push based python-3.12 with poetry 1.8.2
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v6
         with:
           context: ./python/python-bookworm-with-poetry/
           platforms: linux/amd64,linux/arm64
