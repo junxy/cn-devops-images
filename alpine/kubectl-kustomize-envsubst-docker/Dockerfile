@@ -31,10 +31,10 @@ RUN curl -L https://github.com/a8m/envsubst/releases/download/${ENVSUBST_VERSION
 RUN cd /usr/local/bin/ && curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 # install kubectl
-# https://dl.k8s.io/v1.30.3/bin/linux/amd64/kubectl
+# https://dl.k8s.io/v1.32.1/bin/linux/amd64/kubectl
 #  docker run --rm -it --entrypoint sh ghcr.nju.edu.cn/junxy/alpine:kubectl-kustomize-envsubst
 #  which kubectl | xargs cat
-RUN curl -L "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
+RUN curl -L "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl \
 # RUN curl -L https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
