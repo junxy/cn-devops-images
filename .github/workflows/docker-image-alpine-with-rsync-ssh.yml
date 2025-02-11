@@ -7,9 +7,9 @@ on:
     paths:
       - 'alpine/**'
       - '!alpine/kubectl-kustomize-envsubst-docker/**'
-  schedule:
+  # schedule:
     # Runs "every Monday" (see https://crontab.guru)
-    - cron: '0 0 * * MON'
+    # - cron: '0 0 * * MON'
 jobs:
   build:
     runs-on: ubuntu-latest
