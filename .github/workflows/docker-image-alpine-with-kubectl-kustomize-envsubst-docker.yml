@@ -7,6 +7,7 @@ on:
     paths:
       # - 'alpine/**'
       - 'alpine/kubectl-kustomize-envsubst-docker/**'
+      - '.github/workflows/docker-image-alpine-with-kubectl-kustomize-envsubst-docker.yml'
   # schedule:
     # Runs "every Monday" (see https://crontab.guru)
     # - cron: '0 0 * * MON'
