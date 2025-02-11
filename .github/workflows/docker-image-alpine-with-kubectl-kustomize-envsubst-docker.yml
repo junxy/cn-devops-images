@@ -48,7 +48,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.18
-            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext coreutils
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext coreutils tzdata
           tags: |
             ghcr.io/junxy/alpine:alpine3.18-kubectl-kustomize-envsubst
             ghcr.io/junxy/alpine:alpine3.18-kubectl-kustomize-envsubst-${{ steps.date.outputs.date }}
@@ -64,7 +64,7 @@ jobs:
           push: true
           build-args: |
             ALPINE_VERSION=3.19
-            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext coreutils
+            ESSENTIAL_PACKAGES=jq tree ca-certificates curl bash gettext coreutils tzdata
           tags: |
             ghcr.io/junxy/alpine:kubectl-kustomize-envsubst
             ghcr.io/junxy/alpine:alpine3.19-kubectl-kustomize-envsubst
